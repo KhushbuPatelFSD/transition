@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transition Timing Function Demo</title>
+    <style>
+      body {
+        background-color: #e0f7fa;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        text-align: center;
+        color: #333;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+        color: #006064;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      div.transition-box {
+        width: 100px;
+        height: 50px;
+        background: blue;
+        color: white;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: width 2s, background 2s;
+      }
+
+      #div1 {
+        transition-property: width, background;
+        transition-timing-function: linear;
+      }
+      #div2 {
+        transition-property: width, background;
+        transition-timing-function: ease;
+      }
+      #div3 {
+        transition-property: width, background;
+        transition-timing-function: ease-in;
+      }
+      #div4 {
+        transition-property: width, background;
+        transition-timing-function: ease-out;
+      }
+      #div5 {
+        transition-property: width, background;
+        transition-timing-function: ease-in-out;
+      }
+
+      div.transition-box:hover,
+      div.transition-box.active {
+        width: 300px;
+        background: cyan;
+      }
+
+      .description {
+        font-size: 0.9em;
+        color: #006064;
+        max-width: 300px;
+        margin-bottom: 10px;
+      }
+
+      button#allBtn {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #006064;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+      }
+
+      button#allBtn:hover {
+        background-color: #00bcd4;
+        color: #006064;
+      }
+
+      @media (max-width: 480px) {
+        div.transition-box {
+          width: 80px;
+          height: 45px;
+          font-size: 14px;
+        }
+
+        div.transition-box:hover,
+        div.transition-box.active {
+          width: 90%;
+          max-width: 300px;
+        }
+
+        .description {
+          max-width: 90%;
+          font-size: 0.85em;
+        }
+
+        button#allBtn {
+          width: 90%;
+          font-size: 14px;
+          padding: 8px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>The transition-timing-function Property</h1>
+
+    <button id="allBtn">All at Once</button>
+
+    <div class="container">
+      <div id="div1" class="transition-box">linear</div>
+      <div class="description">
+        Linear: Moves at a constant speed throughout the transition.
+      </div>
+
+      <div id="div2" class="transition-box">ease</div>
+      <div class="description">
+        Ease: Starts slow, speeds up in the middle, slows down at the end.
+      </div>
+
+      <div id="div3" class="transition-box">ease-in</div>
+      <div class="description">
+        Ease-in: Starts slow and accelerates towards the end.
+      </div>
+
+      <div id="div4" class="transition-box">ease-out</div>
+      <div class="description">
+        Ease-out: Starts fast and slows down at the end.
+      </div>
+
+      <div id="div5" class="transition-box">ease-in-out</div>
+      <div class="description">
+        Ease-in-out: Starts slow, speeds up in the middle, and slows down at the
+        end.
+      </div>
+    </div>
+
+    <p style="margin-top: 20px">
+      Hover over the boxes or click "All at Once" to observe the different
+      transition effects.
+    </p>
+
+    <script>
+      const allBtn = document.getElementById("allBtn");
+      const boxes = document.querySelectorAll(".transition-box");
+
+      allBtn.addEventListener("click", () => {
+        boxes.forEach((box) => {
+          // Toggle the "active" class to trigger the transition
+          box.classList.add("active");
+          // Remove the class after the transition ends to allow repeat
+          setTimeout(() => box.classList.remove("active"), 2200); // Slightly longer than 2s transition
+        });
+      });
+    </script>
+  </body>
+</html>
